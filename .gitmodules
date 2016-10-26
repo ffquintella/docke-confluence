@@ -1,0 +1,15 @@
+[submodule "modules/confluence"]
+	path = modules/confluence
+	url = https://ffquintella@github.com/voxpupuli/puppet-confluence.git
+[submodule "modules/jdk_oracle"]
+	path = modules/jdk_oracle
+	url = https://ffquintella@github.com/tylerwalts/puppet-jdk_oracle.git
+[submodule "modules/archive"]
+	path = modules/archive
+	url = https://ffquintella@github.com/voxpupuli/puppet-archive.git
+[submodule "modules/staging"]
+	path = modules/staging
+	url = https://ffquintella@github.com/voxpupuli/puppet-staging.git
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://ffquintella@github.com/puppetlabs/puppetlabs-stdlib.git
