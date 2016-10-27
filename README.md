@@ -6,7 +6,7 @@ This container contains the confluence server installation based on Linux Centos
 
 Current branch: latest
 
-*  `5.10.8.1`,
+*  `5.10.8.2`
 
 
 For previous versions or newest releases see other branches.
@@ -18,7 +18,7 @@ Dockerfiles to build [Jira](https://www.atlassian.com/software/jira)
 
 
 ### Version
-* Version: `5.10.8.1` - First version
+* Version: `5.10.8.2` - Latest: First version
 
 
 ## Installation
