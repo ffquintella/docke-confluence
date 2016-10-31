@@ -46,6 +46,7 @@ file { "/opt/java_home/jdk1.${java_version}.0_${java_version_update}/jre/lib/sec
   target  => '/etc/pki/tls/certs/java/cacerts'
 }
 
+
 class { 'confluence':
   version        => $confluence_version,
   installdir     => $confluence_installdir,
@@ -99,10 +100,16 @@ file { '/usr/bin/start-service':
   target => '/opt/scripts/start-service.sh',
 }
 
-exec {'erase dbconfig':
+exec {'Fix permissions':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-  command => "rm -f ${confluence_home}/dbconfig.xml"
+  command => "chown -R confluence:confluence ${confluence_home}"
 } ->
+
+exec {'Fix permissions2':
+  path  => '/bin:/sbin:/usr/bin:/usr/sbin',
+  command => "chown -R confluence:confluence ${$real_appdir}"
+} ->
+
 
 # Full update
 exec {'Full update':
