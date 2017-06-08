@@ -24,24 +24,26 @@ enabled=1
 gpgcheck=0'
 }
 
+
 class { 'jdk_oracle':
   version     => $java_version,
   install_dir => $java_home,
   version_update => $java_version_update,
   version_build  => $java_version_build,
+  version_hash  => $java_version_hash,
   package     => 'server-jre'
-} ->
+}
 
-file { '/etc/pki/tls/certs/java':
+-> file { '/etc/pki/tls/certs/java':
   ensure  => directory
-} ->
+}
 
-file { '/etc/pki/tls/certs/java/cacerts':
+-> file { '/etc/pki/tls/certs/java/cacerts':
   ensure  => link,
   target  => '/etc/pki/ca-trust/extracted/java/cacerts'
-} ->
+}
 
-file { "/opt/java_home/jdk1.${java_version}.0_${java_version_update}/jre/lib/security/cacerts":
+-> file { "/opt/java_home/jdk1.${java_version}.0_${java_version_update}/jre/lib/security/cacerts":
   ensure  => link,
   target  => '/etc/pki/tls/certs/java/cacerts'
 }
@@ -52,7 +54,6 @@ class { 'confluence':
   installdir     => $confluence_installdir,
   homedir        => $confluence_home,
   javahome       => $java_home,
-  checksum       => $confluence_checksum,
   manage_service => false,
   require        => [Package['perl'], File["/opt/java_home/jdk1.${java_version}.0_${java_version_update}/jre/lib/security/cacerts"]]
 

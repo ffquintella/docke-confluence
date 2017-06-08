@@ -4,8 +4,7 @@ This container contains the confluence server installation based on Linux Centos
 
 ## Supported tags
 
-Current branch: latest
-
+*  `6.2.1.1` : latest
 *  `5.10.8.2`
 
 
@@ -14,11 +13,12 @@ For previous versions or newest releases see other branches.
 ## Introduction
 
 
-Dockerfiles to build [Jira](https://www.atlassian.com/software/jira)
+Dockerfiles to build [Confluence](https://www.atlassian.com/software/confluence)
 
 
 ### Version
-* Version: `5.10.8.2` - Latest: First version
+* Version: `6.2.1.1` - Latest: Upgrade to 6.2.1
+* Version: `5.10.8.2` - First version
 
 
 ## Installation
@@ -66,11 +66,11 @@ Next ports are exposed
 
 We use puppet as the default entry point to manage the environment
 
-*Jira is launched in background. Which means that is possible to restart jira without restarting the container.*
+*Confluence is launched in background. Which means that is possible to restart confluence without restarting the container.*
 
 ### Hostname
 
-It is recommended to specify `hostname` for this image, so if you will recreate bamboo instance you will keep the same hostname.
+It is recommended to specify `hostname` for this image, so if you will recreate confluence instance you will keep the same hostname.
 
 ### SSL certs
 The image is configured to use /etc/pki/tls/certs as the base ssl cert configuration. Java will use /etc/pki/tls/certs/java/cacerts as it's keychain.
@@ -94,7 +94,7 @@ Start a new instance with the new image (backup your data dir)
 
 My thanks to the following
 
-- Atlassian for the great KM
+- Atlassian for the great KM tool
 - Every one who worked building docker
 - Github for the dvcs support
 - Puppet guys for the great tool
