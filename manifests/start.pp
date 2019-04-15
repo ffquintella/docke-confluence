@@ -30,7 +30,8 @@ if $pre_run_cmd != '' {
 }
 
 user {'confluence':
-  ensure => present
+  ensure => present,
+  shell  => '/bin/bash',
 }
 # Using Pre-run CMD
 exec {'Pre Run CMD':
@@ -45,6 +46,6 @@ exec {'Coping Configs':
 # Starting jira
 exec {'Starting Confluence':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-  command => "echo \"Starting Confluence Server ...\"; ${real_appdir}/bin/start-confluence.sh & ",
-  require => Exec['dos2unix-fix-start-service']
+  command => "${real_appdir}/bin/start-confluence.sh",
+  require => [Exec['dos2unix-fix-start-service'], User['confluence']]
 }
