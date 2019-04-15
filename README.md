@@ -2,12 +2,6 @@
 
 This container contains the confluence server installation based on Linux Centos 7 & puppet.
 
-## Supported tags
-
-*  `6.15.2` : latest
-*  `6.2.1.1`
-*  `5.10.8.2`
-
 
 For previous versions or newest releases see other branches.
 
@@ -18,7 +12,8 @@ Dockerfiles to build [Confluence](https://www.atlassian.com/software/confluence)
 
 
 ### Version
-* Version: `6.15.2` - Latest: Upgrade to 6.15.2
+* Version: `6.15.2.2` - Latest: Fix base.pp
+* Version: `6.15.2.1` - Upgrade to 6.15.2
 * Version: `6.2.1.1`
 * Version: `5.10.8.2` - First version
 

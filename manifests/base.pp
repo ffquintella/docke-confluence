@@ -13,6 +13,8 @@ package{'perl':
   ensure => present
 }
 
+
+
 file{ '/etc/yum.repos.d/epel.repo':
   ensure => present,
   content => '[epel]
@@ -61,14 +63,15 @@ class { 'confluence':
 
 $real_appdir = "${confluence_installdir}/atlassian-confluence-${confluence_version}"
 
-#java_opts      => '-Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=3128 -Dhttps.proxyHost=secure-proxy.example.com -Dhttps.proxyPort=3128'
-#tomcat_proxy   => {
-#  scheme       => 'https',
-#  proxyName    => 'confluence.example.co.za',
-#  proxyPort    => '443',
-#},
 
-#class { 'jira::facts': }
+#http://download.oracle.com/otn/utilities_drivers/jdbc/122010/ojdbc8.jar
+
+/*exec {'wget and disable wget':
+  path    => '/bin:/sbin:/usr/bin:/usr/sbin',
+  cwd     => "${real_appdir}/lib",
+  command => 'wget http://download.oracle.com/otn/utilities_drivers/jdbc/122010/ojdbc8.jar; chmod -x /usr/bin/wget',
+  require => Class['confluence']
+} */
 
 file {'/opt/confluence-config':
   ensure  => directory,
@@ -103,7 +106,8 @@ file { '/usr/bin/start-service':
 
 exec {'Fix permissions':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-  command => "chown -R confluence:confluence ${confluence_home}"
+  command => "chown -R confluence:confluence ${confluence_home}",
+  require => Class['confluence']
 } ->
 
 exec {'Fix permissions2':
@@ -115,7 +119,8 @@ exec {'Fix permissions2':
 # Full update
 exec {'Full update':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-  command => 'yum -y update'
+  command => 'yum -y update ; chmod -x /bin/curl', 
+  require => Class['confluence']
 } ->
 # Cleaning unused packages to decrease image size
 exec {'erase installer':
@@ -140,6 +145,8 @@ package {'rhn-check': ensure => absent }
 package {'rhn-client-tools': ensure => absent }
 package {'rhn-setup': ensure => absent }
 package {'rhnlib': ensure => absent }
+package{'wget': ensure => absent }
+
 
 package {'/usr/share/kde4':
   ensure => absent
