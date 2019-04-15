@@ -47,7 +47,10 @@ COPY start-service.sh /opt/scripts/start-service.sh
 RUN chmod +x /opt/scripts/start-service.sh ; ln -s /opt/scripts/start-service.sh /usr/bin/start-service ;/opt/puppetlabs/puppet/bin/puppet apply  --modulepath=/etc/puppet/modules /etc/puppet/manifests/base.pp  ;\
  yum clean all ; rm -rf /tmp/* ; rm -rf /var/cache/* ; rm -rf /var/tmp/* ; rm -rf /var/opt/staging
 
-COPY setenv.sh ${CONFLUENCE_INSTALLDIR}/atlassian-confluence-${CONFLUENCE_VERSION}/bin
+COPY --chown=confluence:confluence setenv.sh ${CONFLUENCE_INSTALLDIR}/atlassian-confluence-${CONFLUENCE_VERSION}/bin
+COPY --chown=confluence:confluence user.sh ${CONFLUENCE_INSTALLDIR}/atlassian-confluence-${CONFLUENCE_VERSION}/bin
+
+RUN chmod +x ${CONFLUENCE_INSTALLDIR}/atlassian-confluence-${CONFLUENCE_VERSION}/bin/*
 
 # Ports Jira web interface
 EXPOSE 8090/tcp
