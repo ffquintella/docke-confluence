@@ -46,6 +46,5 @@ exec {'Coping Configs':
 exec {'Starting Confluence':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
   command => "echo \"Starting Confluence Server ...\"; ${real_appdir}/bin/start-confluence.sh & ",
-  user => 'confluence',
   require => Exec['dos2unix-fix-start-service']
 }
