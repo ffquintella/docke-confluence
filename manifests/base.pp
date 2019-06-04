@@ -26,15 +26,31 @@ enabled=1
 gpgcheck=0'
 }
 
+#java-1.8.0-openjdk-1.8.0.212.b04-0.el7_6
+#java-11-openjdk-11.0.3.7-0.el7_6
 
-class { 'jdk_oracle':
-  version     => $java_version,
-  install_dir => $java_home,
-  version_update => $java_version_update,
-  version_build  => $java_version_build,
-  version_hash  => $java_version_hash,
-  package     => 'server-jre'
+
+if $java_version == '11'
+{
+  $java_package = "java-${java_version}-openjdk-${java_version}.0.${java_version_update}.${java_version_build}-0.el7_6"
 }
+else
+{
+  $java_package = "java-1.${java_version}.0-openjdk-1.${java_version}.0.${java_version_update}.b${java_version_build}-0.el7_6"
+}
+
+class { 'java':
+  package  => $java_package,
+}
+
+# class { 'jdk_oracle':
+  # version     => $java_version,
+  # install_dir => $java_home,
+  # version_update => $java_version_update,
+  # version_build  => $java_version_build,
+  # version_hash  => $java_version_hash,
+  # package     => 'server-jre'
+# }
 
 -> file { '/etc/pki/tls/certs/java':
   ensure  => directory
@@ -45,7 +61,7 @@ class { 'jdk_oracle':
   target  => '/etc/pki/ca-trust/extracted/java/cacerts'
 }
 
--> file { "/opt/java_home/jdk1.${java_version}.0_${java_version_update}/jre/lib/security/cacerts":
+-> file { '/usr/lib/jvm/jre/lib/security/cacerts':
   ensure  => link,
   target  => '/etc/pki/tls/certs/java/cacerts'
 }
@@ -57,7 +73,7 @@ class { 'confluence':
   homedir        => $confluence_home,
   javahome       => $java_home,
   manage_service => false,
-  require        => [Package['perl'], File["/opt/java_home/jdk1.${java_version}.0_${java_version_update}/jre/lib/security/cacerts"]]
+  require        => [Package['perl'], File['/usr/lib/jvm/jre/lib/security/cacerts']]
 
 }
 

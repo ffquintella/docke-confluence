@@ -2,21 +2,19 @@ FROM ffquintella/docker-puppet:latest
 
 MAINTAINER Felipe Quintella <docker-jira@felipe.quintella.email>
 
-LABEL version="6.15.2"
+LABEL version="6.15.4"
 LABEL description="This image contais the confluence application to be used \
 as a server."
 
 
-#https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.1.4.tar.gz
-#https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.2.1.tar.gz
-#https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.15.2.tar.gz
+#http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.4.tar.gz
 
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
 ENV JAVA_HOME "/opt/java_home/java_home"
-ENV CONFLUENCE_VERSION "6.15.2"
+ENV CONFLUENCE_VERSION "6.15.4"
 ENV CONFLUENCE_INSTALLDIR "/opt/confluence"
 ENV CONFLUENCE_HOME "/opt/confluence-home"
 
@@ -27,9 +25,9 @@ ENV FACTER_CONFLUENCE_HOME $CONFLUENCE_HOME
 
 ENV FACTER_JAVA_HOME "/opt/java_home"
 ENV FACTER_JAVA_VERSION "8"
-ENV FACTER_JAVA_VERSION_UPDATE "201"
-ENV FACTER_JAVA_VERSION_BUILD "09"
-ENV FACTER_JAVA_VERSION_HASH "42970487e3af4f5aa5bca3f542482c60"
+ENV FACTER_JAVA_VERSION_UPDATE "212"
+ENV FACTER_JAVA_VERSION_BUILD "04"
+ENV FACTER_JAVA_VERSION_HASH "59066701cf1a433da9770636fbc4c9aa"
 
 ENV JVM_MINIMUM_MEMORY 1024m
 ENV JVM_MAXIMUM_MEMORY 6144m

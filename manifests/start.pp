@@ -43,7 +43,7 @@ exec {'Coping Configs':
   command => "echo \"Coping configs ...\"; cp -r /opt/confluence-config/* ${real_appdir}/conf; chown -R confluence:confluence ${real_appdir}/conf ",
   creates => "${real_appdir}/conf/web.xml"
 } ->
-# Starting jira
+# Starting confluence
 exec {'Starting Confluence':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
   command => "${real_appdir}/bin/start-confluence.sh",
