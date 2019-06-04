@@ -12,7 +12,8 @@ Dockerfiles to build [Confluence](https://www.atlassian.com/software/confluence)
 
 
 ### Version
-* Version: `6.15.2.5` - Latest: Fix base.pp 2
+* Version: `6.15.4.1` - Latest: Upgrade to 6.15.4; Changed java to openjdk-1.8.0.212 
+* Version: `6.15.2.5` - Fix base.pp 2
 * Version: `6.15.2.2` - Fix base.pp
 * Version: `6.15.2.1` - Upgrade to 6.15.2
 * Version: `6.2.1.1`

@@ -1,1 +1,1 @@
-docker build -t ffquintella/docker-confluence:latest .
+docker build --no-cache -t ffquintella/docker-confluence:latest .
